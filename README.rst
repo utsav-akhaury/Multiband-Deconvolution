@@ -34,4 +34,4 @@ Usage
 
     .. code-block:: bash
 
-        conda activate sunet
+        conda activate mbdeconv

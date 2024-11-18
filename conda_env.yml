@@ -1,0 +1,16 @@
+# This file may be used to create a conda environment using:
+# $ conda create --name mbdeconv --file <this file>
+
+name: mbdeconv
+channels:
+  - pytorch
+  - conda-forge
+dependencies:
+  - numpy=1.24.3
+  - python=3.10.6
+  - scikit-image=0.19.2
+  - scipy=1.10.0
+
+  - pip:
+    - thop==0.1.1.post2209072238 
+    - tqdm
