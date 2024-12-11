@@ -428,10 +428,8 @@ def comparison_normcbar(targets, noisy, euclid, deconv, labels, figsize):
                 im = axes.imshow(list_im[i*n_col + k]/4, origin='lower', vmin=vmin, vmax=vmax, cmap='afmhot')
                 axes.text(.01, .943, labels[k]+': '+bands[i]+'-band', ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes)
 
-    euc = euclid
-
     axes = plt.subplot(gs1[4])
-    im = axes.imshow(euc, origin='lower',  vmax=vmax, cmap='afmhot')
+    im = axes.imshow(euclid, origin='lower',  vmax=vmax, cmap='afmhot')
     axes.text(.01, .943, 'Euclid: $VIS$', ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes) 
     axes.axis('off')
 

@@ -43,7 +43,7 @@ Code Overview
         MBDeconv_FISTA.py
         run_MCDeconv.ipynb
 
-* ``Data`` is the directory containing the test images used in the tutorial notebook.
+* `Data <https://github.com/utsav-akhaury/Multiband-Deconvolution/tree/main/Data>`_ is the directory containing the test images used in the tutorial notebook.
     * ``euclid.npy`` is the Euclid VIS-band image.
     * ``noisemap_LSST.npy`` is the noise map of the LSST r-, i-, and z-band images.
     * ``noisy_LSST.npy`` is the low-resolution LSST image in r-, i-, and z-bands.
@@ -51,10 +51,10 @@ Code Overview
     * ``psf_LSST.npy`` is the LSST PSF in each LSST band at Euclid resolution.
     * ``sed.npy`` is the fractional contribution of each LSST band to the Euclid VIS band.
     * ``target_HST.npy`` is the target high-resolution HST image.
-* ``README.rst`` contains getting started information on installation and usage.
-* ``conda_env.yml`` is a configuration file for Anaconda (Miniconda) that sets up a Python environment with all the required Python packages for using the Multi-band Deconvolution code.
-* ``MBDeconv_FISTA.py`` contains the implementation of the multi-band deconvolution algorithm.
-* ``run_MCDeconv.ipynb`` is a Jupyter notebook that demonstrates how to use the multi-band deconvolution algorithm.
+* `README.rst <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/README.rst>`_ contains getting started information on installation and usage.
+* `conda_env.yml <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/conda_env.yml>`_ is a configuration file for Anaconda (Miniconda) that sets up a Python environment with all the required Python packages for using the Multi-band Deconvolution code.
+* `MBDeconv_FISTA.py <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/MBDeconv_FISTA.py>`_ contains the implementation of the Multi-band Deconvolution algorithm.
+* `run_MBDeconv.ipynb <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MCDeconv.ipynb>`_ is a Jupyter notebook that demonstrates an example of how to deconvolve the simulated LSST images using the Euclid VIS-band image as a high-resolution prior.
 
 Usage
 =====
@@ -65,4 +65,4 @@ Usage
 
         conda activate mbdeconv
 
-2) Run the ``tutorial.ipynb`` notebook, which will guide you through the deconvolution process.
+2) Run the `run_MBDeconv.ipynb <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb>`_ notebook, which will guide you through the deconvolution process.
