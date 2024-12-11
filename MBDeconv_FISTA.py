@@ -1,6 +1,8 @@
 import numpy as np
 from scipy.signal import convolve
 from skimage.transform import rescale
+from matplotlib import pyplot as plt
+import matplotlib.gridspec as gridspec
 
 def nmse(signal_1, singal_2):
 
@@ -30,14 +32,14 @@ def max_sv(lsst_psf, euc_psf, sigma_noise, lamdbd_constr, SED):
     Parameters
     ----------
     lsst_psf : 2D array
-        The LSST PSF.
+        The LSST PSF at Euclid resolution.
     euc_psf : 2D array
         The Euclid PSF.
     sigma_noise : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
         The noise level in each band.
     lamdbd_constr : float   
         The constraint parameter.
-    SED : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
+    SED : 1D array with 3 float values (for each LSST band)
         The fractional contribution of each LSST band to the Euclid VIS band.
 
     Returns
@@ -183,14 +185,14 @@ def grad(y_lsst, y_euc, ch, x_k, lsst_psf, euc_psf, sigma_noise, lamdbd_constr, 
     x_k : 3D array
         The current estimate of the deconvolved image in each LSST band.
     lsst_psf : 3D array
-        The LSST PSF in each LSST band.
+        The LSST PSF in each LSST band at Euclid resolution.
     euc_psf : 2D array  
         The Euclid PSF.
     sigma_noise : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
         The noise level in each band.
     lamdbd_constr : float
         The constraint parameter.
-    SED : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
+    SED : 1D array with 3 float values (for each LSST band)
         The fractional contribution of each LSST band to the Euclid VIS band.
         
     Returns
@@ -223,15 +225,15 @@ def loss_func(y_lsst, y_euc, x_k, lsst_psf, euc_psf, sigma_noise, lamdbd_constr,
     x_k : 3D array
         The current estimate of the deconvolved image in each LSST band.
     lsst_psf : 3D array
-        The LSST PSF in each LSST band.
+        The LSST PSF in each LSST band at Euclid resolution.
     euc_psf : 2D array
         The Euclid PSF.
     sigma_noise : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
         The noise level in each band.
     lamdbd_constr : float
         The constraint parameter.
-    SED : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
-        The fractional contribution of each LSST band to the Euclid VIS band.   
+    SED : 1D array with 3 float values (for each LSST band)
+        The fractional contribution of each LSST band to the Euclid VIS band.  
 
     Returns
     -------
@@ -262,12 +264,12 @@ def set_lambda_constr(y_lsst, y_euc, x_k, lsst_psf, euc_psf, sigma_noise, SED, f
     x_k : 3D array
         The current estimate of the deconvolved image in each LSST band.
     lsst_psf : 3D array
-        The LSST PSF in each LSST band.
+        The LSST PSF in each LSST band at Euclid resolution.
     euc_psf : 2D array
         The Euclid PSF.
     sigma_noise : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
         The noise level in each band.
-    SED : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
+    SED : 1D array with 3 float values (for each LSST band)
         The fractional contribution of each LSST band to the Euclid VIS band.
     frac_contr : float  
         The constraint parameter.
@@ -301,7 +303,7 @@ def runDeconv(y_lsst, y_euc, lsst_psf, euc_psf, sigma_noise, n_iter, SED, frac_c
     y_euc : 2D array
         The Euclid image in the Euclid VIS band.
     lsst_psf : 3D array
-        The LSST PSF in each LSST band.
+        The LSST PSF in each LSST band at Euclid resolution.
     euc_psf : 2D array
         The Euclid PSF.  
     sigma_noise : 1D array with 4 float values (3 for LSST bands and 1 for Euclid VIS)
@@ -319,8 +321,6 @@ def runDeconv(y_lsst, y_euc, lsst_psf, euc_psf, sigma_noise, n_iter, SED, frac_c
     -------
     x_k : 3D array
         The deconvolved image in each LSST band.
-    loss : 2D array 
-        The loss function at each iteration.
     """
     
     # Initialize the first estimate of the deconvolved images as the LSST images at Euclid resolution
@@ -328,8 +328,6 @@ def runDeconv(y_lsst, y_euc, lsst_psf, euc_psf, sigma_noise, n_iter, SED, frac_c
     for j in range(y_lsst.shape[-1]):
         x_0[:,:,j] = rescale_preserve_flux(y_lsst[:,:,j], 2)
 
-    loss = np.full((n_iter, y_euc.shape[-1]), np.inf)
-    
     # FISTA parameters
     x_k = x_0
     t_k = 1.0
@@ -358,7 +356,85 @@ def runDeconv(y_lsst, y_euc, lsst_psf, euc_psf, sigma_noise, n_iter, SED, frac_c
         x_k1 = x_k + lambda_fista*(x_k1 - x_k)  
         x_k = x_k1
 
-        ## Loss
-        loss[k] = loss_func(y_lsst, y_euc, x_k, lsst_psf, euc_psf, sigma_noise, lamdbd_constr, SED)  
+    return x_k
 
-    return x_k, loss
+
+def comparison_normcbar(targets, noisy, euclid, deconv, labels, figsize):
+
+    r"""
+    Plot the comparison between the noisy, deconvolved, and target images.
+    
+    Parameters
+    ----------
+    targets : 3D array
+        The target images.
+    noisy : 3D array
+        The noisy images.
+    euclid : 2D array
+        The Euclid image.
+    deconv : 3D array
+        The deconvolved images.
+    labels : list of strings
+        The labels for the images.
+    figsize : tuple
+        The figure size.
+
+    Returns
+    -------
+    fig : figure
+        The figure with the comparison between the noisy, deconvolved, and target images.
+    """
+    
+    list_im = []
+
+    n_row = targets.shape[-1]
+    n_col = len(labels)
+    
+    bands = ['$r$','$i$','$z$']
+    bands_hst = ['$F606W$','$F775W$','$F850LP$']
+    
+    for i in range(n_row):       
+        list_im += [noisy[...,i], 
+                    deconv[...,i], 
+                    targets[...,i]]
+
+    fig = plt.figure(figsize=figsize)
+    gs1 = gridspec.GridSpec(n_row, n_col+1)
+    gs1.update(wspace=0.01, hspace=0.01)
+        
+    vmin = np.inf
+    vmax = 0
+
+    for t in range(n_row):
+        vmin = np.min((vmin, np.min(list_im[t*n_col + 1])))
+        vmax = np.max((vmax, np.max(list_im[t*n_col + 1])))
+
+    for i in range(n_row):
+        for k in range(n_col): 
+            
+            vmin = np.min((vmin, np.min(list_im[i*n_col + 1])))
+            vmax = np.max((vmax, np.max(list_im[i*n_col + 1])))
+
+            axes = plt.subplot(gs1[i*n_col + k + 1*(i+1)])
+            axes.axis('off')
+
+            if k==1:
+                im = axes.imshow(list_im[i*n_col + k], origin='lower', vmin=vmin, vmax=vmax, cmap='afmhot')
+                axes.text(.01, .938, labels[k]+': '+bands[i]+'-band', ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes)
+            elif k==2:
+                im = axes.imshow(list_im[i*n_col + k], origin='lower', vmin=vmin, vmax=vmax, cmap='afmhot')
+                axes.text(.01, .943, labels[k]+': '+bands_hst[i], ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes)
+            elif k==0:
+                im = axes.imshow(list_im[i*n_col + k]/4, origin='lower', vmin=vmin, vmax=vmax, cmap='afmhot')
+                axes.text(.01, .943, labels[k]+': '+bands[i]+'-band', ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes)
+
+    euc = euclid
+
+    axes = plt.subplot(gs1[4])
+    im = axes.imshow(euc, origin='lower',  vmax=vmax, cmap='afmhot')
+    axes.text(.01, .943, 'Euclid: $VIS$', ha='left', va='bottom', fontsize=25, fontweight="bold", color='black', bbox={'facecolor': 'white', 'alpha': 1, 'pad': 5}, transform=axes.transAxes) 
+    axes.axis('off')
+
+    plt.tight_layout()
+    
+    return fig

@@ -1,16 +1,16 @@
 # This file may be used to create a conda environment using:
-# $ conda create --name mbdeconv --file <this file>
+# $ conda env create -f conda_env.yml
 
 name: mbdeconv
 channels:
   - pytorch
   - conda-forge
 dependencies:
+  - matplotlib=3.6.1
   - numpy=1.24.3
   - python=3.10.6
+  - pyyaml=6.0
   - scikit-image=0.19.2
   - scipy=1.10.0
-
-  - pip:
-    - thop==0.1.1.post2209072238 
-    - tqdm
+  - seaborn=0.11.2
+  - jupyter

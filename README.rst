@@ -27,6 +27,35 @@ Installation
 Code Overview
 =============
 
+.. code-block:: bash
+
+    Multiband-Deconvolution/
+        Data/
+            euclid.npy
+            noisemap_LSST.npy
+            noisy_LSST.npy
+            psf_euclid_vis.npy
+            psf_LSST.npy
+            sed.npy
+            target_HST.npy
+        README.rst
+        conda_env.yml
+        MBDeconv_FISTA.py
+        run_MCDeconv.ipynb
+
+* ``Data`` is the directory containing the test images used in the tutorial notebook.
+    * ``euclid.npy`` is the Euclid VIS-band image.
+    * ``noisemap_LSST.npy`` is the noise map of the LSST r-, i-, and z-band images.
+    * ``noisy_LSST.npy`` is the low-resolution LSST image in r-, i-, and z-bands.
+    * ``psf_euclid_vis.npy`` is the Euclid VIS-band PSF.
+    * ``psf_LSST.npy`` is the LSST PSF in each LSST band at Euclid resolution.
+    * ``sed.npy`` is the fractional contribution of each LSST band to the Euclid VIS band.
+    * ``target_HST.npy`` is the target high-resolution HST image.
+* ``README.rst`` contains getting started information on installation and usage.
+* ``conda_env.yml`` is a configuration file for Anaconda (Miniconda) that sets up a Python environment with all the required Python packages for using the Multi-band Deconvolution code.
+* ``MBDeconv_FISTA.py`` contains the implementation of the multi-band deconvolution algorithm.
+* ``run_MCDeconv.ipynb`` is a Jupyter notebook that demonstrates how to use the multi-band deconvolution algorithm.
+
 Usage
 =====
 
@@ -35,3 +64,5 @@ Usage
     .. code-block:: bash
 
         conda activate mbdeconv
+
+2) Run the ``tutorial.ipynb`` notebook, which will guide you through the deconvolution process.
