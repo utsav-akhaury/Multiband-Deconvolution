@@ -54,7 +54,7 @@ Code Overview
 * `README.rst <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/README.rst>`_ contains getting started information on installation and usage.
 * `conda_env.yml <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/conda_env.yml>`_ is a configuration file for Anaconda (Miniconda) that sets up a Python environment with all the required Python packages for using the Multi-band Deconvolution code.
 * `MBDeconv_FISTA.py <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/MBDeconv_FISTA.py>`_ contains the implementation of the Multi-band Deconvolution algorithm.
-* `run_MBDeconv.ipynb <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MCDeconv.ipynb>`_ is a Jupyter notebook that demonstrates an example of how to deconvolve the simulated LSST images using the Euclid VIS-band image as a high-resolution prior.
+* `run_MBDeconv.ipynb <https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb>`_ is a Jupyter notebook that demonstrates an example of how to deconvolve the simulated LSST images using the Euclid VIS-band image as a high-resolution prior.
 
 Usage
 =====
