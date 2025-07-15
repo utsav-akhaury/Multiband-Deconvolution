@@ -7,8 +7,7 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 
 <img src = "https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Data/deconv_result.png?raw=true" width="900">  
 
-Installation
-============
+## Installation
 
 1) [Download and install Miniconda](http://conda.pydata.org/miniconda.html). Choose the Python 3.x version for your platform.
 
@@ -27,8 +26,7 @@ Installation
         conda env create -f conda_env.yml
 ```
 
-Code Overview
-=============
+## Code Overview
 
 ```bash
     Multiband-Deconvolution/
@@ -61,8 +59,7 @@ Code Overview
 * [MBDeconv_FISTA.py](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/MBDeconv_FISTA.py) contains the implementation of the Multi-band Deconvolution algorithm.
 * [run_MBDeconv.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb) is a Jupyter notebook that demonstrates an example of how to deconvolve the simulated LSST images using the Euclid VIS-band image as a high-resolution prior.
 
-Usage
-=====
+## Usage
 
 1) Activate the ``mbdeconv`` conda environment:
 
