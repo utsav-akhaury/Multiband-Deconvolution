@@ -1,7 +1,7 @@
 # Joint multi-band deconvolution for Euclid and Vera C. Rubin images
 
 
-We introduce a novel multi-band deconvolution technique aimed at improving the resolution of ground-based astronomical images by leveraging higher-resolution space-based observations. The method capitalises on the fortunate fact that the Vera C. Rubin/LSST $r$-, $i$-, and $z$-bands lie within the Euclid VIS band. The algorithm jointly deconvolves all the data to turn the the $r$-, $i$-, and $z$-band Vera C. Rubin images to the resolution of Euclid.
+We introduce a novel multi-band deconvolution technique aimed at improving the resolution of ground-based astronomical images by leveraging higher-resolution space-based observations. The method capitalises on the fortunate fact that the Vera C. Rubin (LSST) $r$-, $i$-, and $z$-bands lie within the Euclid $VIS$ band. The algorithm jointly deconvolves all the data to turn the the $r$-, $i$-, and $z$-band Vera C. Rubin images to the resolution of Euclid.
 
 The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/10.1051/0004-6361/202452308).   
 
@@ -49,10 +49,10 @@ Code Overview
 
 * [Data](https://github.com/utsav-akhaury/Multiband-Deconvolution/tree/main/Data) is the directory containing the test images used in the tutorial notebook.
     * ``deconv_result.png`` is an image of a deconvolved galaxy.
-    * ``euclid.npy`` is the Euclid VIS-band image.
+    * ``euclid.npy`` is the Euclid $VIS$-band image.
     * ``noisemap_LSST.npy`` is the noise map of the LSST $r$-, $i$-, and $z$-band images.
     * ``noisy_LSST.npy`` is the low-resolution LSST image in $r$-, $i$-, and $z$-bands.
-    * ``psf_euclid_vis.npy`` is the Euclid VIS-band PSF.
+    * ``psf_euclid_vis.npy`` is the Euclid $VIS$-band PSF.
     * ``psf_LSST.npy`` is the LSST PSF in each LSST band at Euclid resolution.
     * ``sed.npy`` is the fractional contribution of each LSST band to the Euclid VIS band.
     * ``target_HST.npy`` is the target high-resolution HST image.
