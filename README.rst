@@ -2,7 +2,9 @@
 Joint multi-band deconvolution for Euclid and Vera C. Rubin images
 ******************************************************************
 
-We introduce a novel multi-band deconvolution technique aimed at improving the resolution of ground-based astronomical images by leveraging higher-resolution space-based observations. The method capitalises on the fortunate fact that the Vera C. Rubin r-, i-, and z-bands lie within the Euclid VIS band. The algorithm jointly deconvolves all the data to turn the the r-, i-, and z-band Vera C. Rubin images to the resolution of Euclid.
+We introduce a novel multi-band deconvolution technique aimed at improving the resolution of ground-based astronomical images by leveraging higher-resolution space-based observations. The method capitalises on the fortunate fact that the Vera C. Rubin $r$-, $i$-, and $z$-bands lie within the Euclid VIS band. The algorithm jointly deconvolves all the data to turn the the $r$-, $i$-, and $z$-band Vera C. Rubin images to the resolution of Euclid.
+
+The algorithm is described in detail in `Akhaury et al. (2025) <https://doi.org/10.1051/0004-6361/202452308>`_.   
 
 Installation
 ============
