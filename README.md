@@ -31,6 +31,7 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 ```bash
     Multiband-Deconvolution/
         Data/
+            euclid_CFHT_psfex.png
             deconv_result.png
             euclid.npy
             noisemap_LSST.npy
@@ -39,15 +40,15 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
             psf_LSST.npy
             sed.npy
             target_HST.npy
-                Euclid_CFHT_psfex.ipynb
+        Euclid_CFHT_psfex.ipynb
+        MBDeconv_FISTA.py
         README.md
         conda_env.yml
-        MBDeconv_FISTA.py
-                run_MBDeconv.ipynb
+        run_MBDeconv.ipynb
 ```
 
 * [Data](https://github.com/utsav-akhaury/Multiband-Deconvolution/tree/main/Data) is the directory containing the test images used in the tutorial notebook.
-    * ``deconv_result.png`` is an image of a deconvolved galaxy.
+    * ``euclid_CFHT_psfex.png`` and ``deconv_result.png`` are example images from the tutorial notebooks.
     * ``euclid.npy`` is the Euclid $VIS$-band image.
     * ``noisemap_LSST.npy`` is the noise map of the LSST $r$-, $i$-, and $z$-band images.
     * ``noisy_LSST.npy`` is the low-resolution LSST image in $r$-, $i$-, and $z$-bands.
@@ -73,4 +74,4 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 
 3) For real-data usage, see [Euclid_CFHT_psfex.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Euclid_CFHT_psfex.ipynb).
 
-<img src="https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Data/Euclid_CFHT_psfex.png?raw=true" width="900">
+<img src="https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Data/euclid_CFHT_psfex.png?raw=true" width="900">
