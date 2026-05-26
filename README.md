@@ -39,10 +39,11 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
             psf_LSST.npy
             sed.npy
             target_HST.npy
+                Euclid_CFHT_psfex.ipynb
         README.md
         conda_env.yml
         MBDeconv_FISTA.py
-        run_MCDeconv.ipynb
+                run_MBDeconv.ipynb
 ```
 
 * [Data](https://github.com/utsav-akhaury/Multiband-Deconvolution/tree/main/Data) is the directory containing the test images used in the tutorial notebook.
@@ -58,6 +59,7 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 * [conda_env.yml](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/conda_env.yml) is a configuration file for Anaconda (Miniconda) that sets up a Python environment with all the required Python packages for using the Multi-band Deconvolution code.
 * [MBDeconv_FISTA.py](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/MBDeconv_FISTA.py) contains the implementation of the Multi-band Deconvolution algorithm.
 * [run_MBDeconv.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb) is a Jupyter notebook that demonstrates an example of how to deconvolve the simulated LSST images using the Euclid VIS-band image as a high-resolution prior.
+* [Euclid_CFHT_psfex.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Euclid_CFHT_psfex.ipynb) applies the Multi-band Deconvolution algorithm to deconvolve real images from the Perseus Cluster captured by the Canada-France-Hawaii Telescope (CFHT). It uses PSFEx for accurate PSF modeling and a more sophisticated noise estimation approach.
 
 ## Usage
 
@@ -68,3 +70,5 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 ```
 
 2) Run the [run_MBDeconv.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb) notebook, which will guide you through the deconvolution process.
+
+3) For real-data usage, see [Euclid_CFHT_psfex.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Euclid_CFHT_psfex.ipynb).
