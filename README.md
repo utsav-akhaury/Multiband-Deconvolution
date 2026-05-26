@@ -72,3 +72,5 @@ The algorithm is described in detail in [Akhaury et al. (2025)](https://doi.org/
 2) Run the [run_MBDeconv.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/run_MBDeconv.ipynb) notebook, which will guide you through the deconvolution process.
 
 3) For real-data usage, see [Euclid_CFHT_psfex.ipynb](https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Euclid_CFHT_psfex.ipynb).
+
+<img src="https://github.com/utsav-akhaury/Multiband-Deconvolution/blob/main/Data/Euclid_CFHT_psfex.png?raw=true" width="900">
